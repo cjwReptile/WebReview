@@ -9,15 +9,24 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>Servlet</servlet-name>
-        <url-pattern>/hello</url-pattern>
+        <url-pattern>/hello.do</url-pattern>
     </servlet-mapping>
 
     <servlet>
         <servlet-name>Login</servlet-name>
         <servlet-class>ServletPakage.Login</servlet-class>
     </servlet>
+
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
     </servlet-mapping>
+    <filter>
+        <filter-name>FilterLogin</filter-name>
+        <filter-class>filter.FilterLogin</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>FilterLogin</filter-name>
+        <url-pattern>*.do</url-pattern>
+    </filter-mapping>
 </web-app>
