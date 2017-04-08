@@ -23,7 +23,12 @@ public class FilterLogin  implements Filter{
         HttpServletRequest request=(HttpServletRequest)servletRequest;
         HttpServletResponse response=(HttpServletResponse)servletResponse;
         HttpSession session=request.getSession();
-        if(session.getAttribute("Login").equals("OK")){
+        String path = request.getRequestURI();
+       System.out.println(session.getAttribute("Login")+"lanjieqi");
+        if(path.indexOf("/Login")>-1||path.indexOf("/hello.do")>-1){
+            filterChain.doFilter(request,response);
+        }
+        if("OK".equals(session.getAttribute("Login"))){
             filterChain.doFilter(request,response);
         }else {
             RequestDispatcher dispatcher=request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");

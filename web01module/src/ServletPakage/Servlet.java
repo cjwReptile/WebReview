@@ -24,12 +24,18 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         userBean.setPassWord(request.getParameter("userBean.passWord"));
         userBean1=userDao.getUserInfo(userBean);
         HttpSession session=request.getSession();
+        if(userBean.getUserId()==null||userBean.getPassWord()==null){
+            RequestDispatcher dispatcher=request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
+            dispatcher.forward(request,response);
+
+        }
         if(userBean.getPassWord().equals(userBean1.getPassWord())){
             session.setAttribute("Login","OK");
+            System.out.println(session.getAttribute("Login")+"denglu");
             RequestDispatcher dispatcher=request.getRequestDispatcher("/WEB-INF/jsp/success.jsp");
             dispatcher.forward(request,response);
         }else{
-            RequestDispatcher dispatcher=request.getRequestDispatcher("/WEB-INF/jsp/fail.jsp");
+            RequestDispatcher dispatcher=request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
             dispatcher.forward(request,response);
         }
 

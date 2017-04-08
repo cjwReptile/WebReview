@@ -9,7 +9,7 @@
 <html>
 <head>
     <div align="center">
-        <form action="hello" method="post">
+        <form action="hello.do" method="post">
             <input type="text" name="userBean.userId">
             <input type="password" name="userBean.passWord">
             <input type="submit" value="提交">
