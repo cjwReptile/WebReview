@@ -33,7 +33,7 @@ public class userDao {
           }
           return conn;
       }
-      public UserBean getUserInfo(UserBean userBean){
+      public UserBean login(UserBean userBean){
           UserBean userBeanR =new UserBean();
           String sql="select userId as 'userId',password as 'passWord'from cjw_user where userId=?";
           Connection conn=getConnection();
@@ -53,6 +53,29 @@ public class userDao {
 
           return userBeanR;
       }
+
+    public boolean register(UserBean userBean){
+        UserBean userBeanR =new UserBean();
+        String sql="INSERT INTO cjw_user(user_name,user_email,pass_word)VALUES (?,?,?)";
+        Connection conn=getConnection();
+        try {
+            ps=conn.prepareStatement(sql);
+            ps.setString(1,userBean.getUserId());
+            ps.setString(1,userBean.getEmail());
+            ps.setString(1,userBean.getPassWord());
+            int i= ps.executeUpdate();
+            if(i>0){
+                return true;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            closeAll(rs,ps,conn);
+        }
+        return false;
+
+    }
+
       public void closeAll(ResultSet rs,PreparedStatement ps,Connection conn){
            try {
                if(rs!=null){

@@ -9,6 +9,17 @@ public class UserBean {
 
     private String passWord;
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    private String email;
+
+
     public void setUserId(String userId) {
         this.userId = userId;
     }
